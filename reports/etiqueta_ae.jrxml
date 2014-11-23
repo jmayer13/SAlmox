@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="etiqueta" language="groovy" columnCount="2" printOrder="Horizontal" pageWidth="595" pageHeight="842" columnWidth="283" columnSpacing="1" leftMargin="14" rightMargin="14" topMargin="14" bottomMargin="14" uuid="e2b00fbe-7ea4-4860-b432-5dba6c105630">
+	<property name="ireport.zoom" value="1.9487171000000034"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="codigo_caixa" class="java.lang.Integer"/>
+	<parameter name="codigo_classe" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT titulo_caixa,
+to_char( converte_codigo_livro(ver_livro_ae_caixa.codigo_livro),'FM000')AS converte_codigo_livro
+     ,ver_livro_ae_caixa.codigo_curso_ano
+FROM ver_livro_ae_caixa($P{codigo_caixa}),busca_caixa($P{codigo_caixa}) ,ver_documento_caixa( $P{codigo_caixa}  )
+ WHERE ver_livro_ae_caixa.codigo_caixa = busca_caixa.codigo_caixa AND
+ ver_livro_ae_caixa.codigo_livro =ver_documento_caixa.codigo_livro  ;]]>
+	</queryString>
+	<field name="titulo_caixa" class="java.lang.String"/>
+	<field name="converte_codigo_livro" class="java.lang.String"/>
+	<field name="codigo_curso_ano" class="java.lang.Integer"/>
+	<detail>
+		<band height="33" splitType="Immediate">
+			<elementGroup>
+				<frame>
+					<reportElement uuid="28ad9490-9b0b-4955-a6bc-43ecb961a080" x="0" y="0" width="282" height="30"/>
+					<box>
+						<pen lineWidth="2.0"/>
+						<topPen lineWidth="2.0"/>
+						<leftPen lineWidth="2.0"/>
+						<bottomPen lineWidth="2.0"/>
+						<rightPen lineWidth="2.0"/>
+					</box>
+					<textField>
+						<reportElement uuid="9d3f413a-6230-475a-9879-b0cc2cd22d96" x="135" y="0" width="79" height="30"/>
+						<textElement verticalAlignment="Middle">
+							<font fontName="Arial" size="18"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$P{codigo_classe}]]></textFieldExpression>
+					</textField>
+				</frame>
+				<staticText>
+					<reportElement uuid="758b8355-933f-4d9d-9a00-3f3daacd267a" x="104" y="0" width="31" height="30"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="18"/>
+					</textElement>
+					<text><![CDATA[CX. ]]></text>
+				</staticText>
+			</elementGroup>
+			<textField>
+				<reportElement uuid="46cdf59f-8400-4146-ab40-b486ec14dca5" x="69" y="0" width="35" height="30"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="18" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{converte_codigo_livro}]]></textFieldExpression>
+			</textField>
+			<elementGroup>
+				<elementGroup>
+					<staticText>
+						<reportElement uuid="dcab2a33-d741-4144-8301-f2f12c3217ee" x="0" y="0" width="26" height="30"/>
+						<textElement verticalAlignment="Middle">
+							<font fontName="Arial" size="18" isBold="false"/>
+						</textElement>
+						<text><![CDATA[ Nº]]></text>
+					</staticText>
+				</elementGroup>
+			</elementGroup>
+			<textField>
+				<reportElement uuid="59f1ef67-d62e-43cf-b188-9e3fdcc2401a" x="214" y="0" width="68" height="30"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{titulo_caixa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="3c2691c7-1162-4a5c-afc5-be4a2ee06194" x="26" y="0" width="35" height="30"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codigo_curso_ano}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="36dbd948-23c8-4470-ab1c-b71e6e244ebf" x="61" y="0" width="8" height="30"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[.]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

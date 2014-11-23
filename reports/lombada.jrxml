@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="lombada" language="groovy" pageWidth="792" pageHeight="612" orientation="Landscape" columnWidth="764" leftMargin="14" rightMargin="14" topMargin="14" bottomMargin="14" uuid="be217e88-a8bf-4806-888c-f7e5ba148c44">
+	<property name="ireport.zoom" value="0.7513148009015792"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="codigo_caixa" class="java.lang.Integer"/>
+	<parameter name="categoria" class="java.lang.String"/>
+	<parameter name="setor" class="java.lang.String"/>
+	<parameter name="codigo_classe" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT titulo_caixa FROM busca_caixa($P{codigo_caixa});]]>
+	</queryString>
+	<field name="titulo_caixa" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="584" splitType="Stretch">
+			<frame>
+				<reportElement uuid="b9c0c839-b31b-4edc-bbf8-5f2e2ce60e6a" x="0" y="0" width="300" height="584"/>
+				<box>
+					<pen lineWidth="3.0"/>
+					<topPen lineWidth="3.0"/>
+					<leftPen lineWidth="3.0"/>
+					<bottomPen lineWidth="3.0"/>
+					<rightPen lineWidth="3.0"/>
+				</box>
+				<image>
+					<reportElement uuid="2d39cc6e-4d0d-4c95-afe6-5e00914e1df7" positionType="Float" stretchType="RelativeToBandHeight" x="60" y="367" width="180" height="196"/>
+					<imageExpression><![CDATA["reports//background.jpg"]]></imageExpression>
+				</image>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement uuid="91f1f1c3-3c38-4e06-8c0c-8da24f0021d8" x="0" y="283" width="300" height="84"/>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" size="25"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{titulo_caixa}]]></textFieldExpression>
+				</textField>
+				<textField isBlankWhenNull="true">
+					<reportElement uuid="1992c1f6-b8f7-4323-8f1a-5858a65aa985" x="0" y="99" width="300" height="89"/>
+					<textElement textAlignment="Center" verticalAlignment="Top">
+						<font fontName="Arial" size="25"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{categoria}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement uuid="efe6d3c7-1053-407f-b010-52cb048e20ac" x="0" y="19" width="300" height="59"/>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" size="25"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{setor}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+					<reportElement uuid="23e23e5f-09b1-4ae6-9f3f-cd65ca7cd1e8" x="0" y="219" width="300" height="38"/>
+					<textElement textAlignment="Center">
+						<font fontName="Arial" size="25"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{codigo_classe}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+</jasperReport>

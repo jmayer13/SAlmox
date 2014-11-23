@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorio_retirada" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="975e6080-74e4-4dbf-9bc1-af386afbf61f">
+	<property name="ireport.zoom" value="1.4641000000000006"/>
+	<property name="ireport.x" value="7"/>
+	<property name="ireport.y" value="188"/>
+	<parameter name="codigo_retirada" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT codigo_retirada,nome,data_retirada,nome_retirou,observacao_retirada,solicitante,titulo_caixa,converte_codigo_livro(livro.codigo_livro) AS codigo_livro, titulo_livro, titulo_documento,observacao_documento,converte_codigo_documento(ver_retirada_documento.codigo_documento)AS codigo_documento, informacao_extra(ver_retirada_documento.codigo_documento)  FROM ver_retirada_documento($P{codigo_retirada}),ver_retirada($P{codigo_retirada}), administrador, livro,caixa WHERE administrador.codigo_administrador = ver_retirada.codigo_administrador AND ver_retirada_documento.codigo_livro=livro.codigo_livro AND livro.codigo_caixa=caixa.codigo_caixa ;]]>
+	</queryString>
+	<field name="codigo_retirada" class="java.lang.Integer"/>
+	<field name="nome" class="java.lang.String"/>
+	<field name="data_retirada" class="java.sql.Timestamp"/>
+	<field name="nome_retirou" class="java.lang.String"/>
+	<field name="observacao_retirada" class="java.lang.String"/>
+	<field name="solicitante" class="java.lang.String"/>
+	<field name="titulo_caixa" class="java.lang.String"/>
+	<field name="codigo_livro" class="java.lang.Integer"/>
+	<field name="titulo_livro" class="java.lang.String"/>
+	<field name="titulo_documento" class="java.lang.String"/>
+	<field name="observacao_documento" class="java.lang.String"/>
+	<field name="codigo_documento" class="java.lang.Integer"/>
+	<field name="informacao_extra" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="75" splitType="Stretch">
+			<image>
+				<reportElement uuid="5ac189bf-dfa0-487a-8348-5af3268884dd" x="0" y="0" width="69" height="72"/>
+				<imageExpression><![CDATA["reports//background.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="4e5e5ad6-0d63-4edf-8c57-93d5a9bc0b66" x="93" y="40" width="462" height="32"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SISTEMA DE GERÊNCIAMENTO DE DOCUMENTOS DO ARQUIVO CENTRAL DA URI - Relatório de Retirada de Documentos]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="968a0b41-4d3e-4251-9c29-852f14718ed9" x="93" y="16" width="462" height="14"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UNIVERSIDADE REGIONAL INTEGRADA DO ALTO URUGUAI E DAS MISSÕES]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="124" splitType="Stretch">
+			<textField>
+				<reportElement uuid="b0c428bf-0070-4c0b-89ae-bcc142e7e795" x="48" y="0" width="66" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codigo_retirada}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="c59eead7-e8fb-4e64-b6a9-6f7869d8d93a" x="0" y="0" width="48" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Código:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c736890e-7bf2-4f66-89a2-89aae1a0f70b" x="264" y="0" width="37" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Data:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="06b9f409-a34d-499e-8cad-766c84684530" x="301" y="0" width="254" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{data_retirada}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="a5e6ab8e-6fae-4b54-8578-dd0a7d248c32" x="0" y="20" width="83" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Administrador:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="539a7321-4150-4daa-8918-5a22eb0fce80" x="83" y="20" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="81152557-88fc-4294-9538-d743350fac55" x="1" y="40" width="68" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Solicitante:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="24c731a6-30dc-47e5-ac96-db8e35b2cf74" x="69" y="40" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{solicitante}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="20a32b4e-69ea-46be-9256-af2d554bcae6" x="1" y="60" width="113" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Pessoa que retirou:]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="431da727-b539-4f04-a056-db93031ae101" x="114" y="60" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome_retirou}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="765e266e-85c0-4f90-a730-97160ccdc74c" x="1" y="80" width="82" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Observação:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="81bdc4ae-9051-447c-8fa3-b083aef3f383" x="83" y="80" width="472" height="42"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{observacao_retirada}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="5b689ce9-5cc9-4c15-ae68-e5f057421655" x="0" y="122" width="555" height="1"/>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="21" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="fc69c905-acca-4d2e-9c3f-81a6eee9b23d" x="1" y="0" width="119" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Código]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="bb1730db-c2dd-446d-873f-67fbefc67fe7" x="380" y="0" width="175" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Observação]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f262afd1-5219-4a7f-afdd-79e60f938a1f" x="120" y="0" width="130" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Título Documento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b51e34ab-65e3-45b4-9c6d-492e2ebb35b9" x="250" y="0" width="130" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Informação extra]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="12" splitType="Stretch">
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="63ae6133-340e-48fa-b5eb-e034d3266021" x="0" y="0" width="60" height="12"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{titulo_caixa}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="43bd8e96-5654-4ef3-92cf-675c03e388dd" x="380" y="0" width="175" height="12"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{observacao_documento}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="bc5346ca-08a4-4a07-9f4c-74035a930e84" x="120" y="0" width="130" height="12"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{titulo_documento}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement uuid="c048934b-d8cf-4ea9-825b-725f833e53d2" x="250" y="0" width="130" height="12"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{informacao_extra}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="f3321e33-ace4-4bb2-a2f5-19816276aa51" x="60" y="0" width="30" height="12"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codigo_livro}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="d385f0c4-638a-48ed-834b-023e7e3f8a2b" x="90" y="0" width="30" height="12"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codigo_documento}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="a3e6f6e5-d861-48de-a9b8-2e5120f83494" x="1" y="2" width="416" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="614e3f91-d09b-436e-8bad-b63568e575e6" x="515" y="2" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="994019c2-4b5e-420c-b509-e9295ecd8565" x="435" y="2" width="80" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="60" splitType="Stretch">
+			<textField>
+				<reportElement uuid="3e8c7971-699a-4450-9b71-21f5de1186fd" x="198" y="40" width="175" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome_retirou}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="9c7ed314-d63c-4840-932f-a87c01fd3586" x="198" y="40" width="175" height="1"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

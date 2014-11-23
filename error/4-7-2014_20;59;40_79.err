@@ -1,0 +1,7 @@
+java.lang.ArrayIndexOutOfBoundsException: 0
+	at uni.uri.salmox.DAO.ConectionFactory.getConnection(ConectionFactory.java:38)
+	at uni.uri.salmox.DAO.UserDAO.takeConnection(UserDAO.java:51)
+	at uni.uri.salmox.DAO.UserDAO.<init>(UserDAO.java:44)
+	at uni.uri.salmox.controller.LoginController.<init>(LoginController.java:47)
+	at uni.uri.salmox.controller.MainController.<init>(MainController.java:38)
+	at uni.uri.salmox.Main.main(Main.java:54)

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="exclusao" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="67f63641-1271-4a4a-9a59-e7e8408393bd">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="codigos_caixa" class="java.lang.Integer[]"/>
+	<parameter name="data" class="java.util.Date"/>
+	<parameter name="responsavel" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT  to_char(converte_codigo_caixa(codigo_caixa),'FM000') AS codigo_caixa,titulo_caixa,observacao_caixa,responsaveis FROM caixa WHERE $X{IN,caixa.codigo_caixa,codigos_caixa};]]>
+	</queryString>
+	<field name="codigo_caixa" class="java.lang.String"/>
+	<field name="titulo_caixa" class="java.lang.String"/>
+	<field name="observacao_caixa" class="java.lang.String"/>
+	<field name="responsaveis" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="72" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="0dd5b9a0-4944-42f2-b91a-144a23c11358" x="93" y="16" width="462" height="14"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UNIVERSIDADE REGIONAL INTEGRADA DO ALTO URUGUAI E DAS MISSÕES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="fef15ba0-5d6d-41e5-acf5-f207d6adcb55" x="93" y="40" width="462" height="32"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SISTEMA DE GERÊNCIAMENTO DE DOCUMENTOS DO ARQUIVO CENTRAL DA URI - Relatório de Exclusão de Caixas]]></text>
+			</staticText>
+			<image>
+				<reportElement uuid="dca21bd8-c9b1-42b6-897e-07a47d9e88e6" x="0" y="0" width="69" height="72"/>
+				<imageExpression><![CDATA["reports//background.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="51" splitType="Stretch">
+			<textField pattern="dd/MM/yyyy">
+				<reportElement uuid="20a6e437-b812-4603-8f25-283dae1148fb" x="100" y="1" width="453" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{data}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="48ea50e1-1104-451d-a0b1-632f693a3326" x="100" y="21" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{responsavel}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="3faf8094-83f0-4878-bedf-dbea89468b27" x="0" y="20" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Responsável:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="f64392fe-1873-461a-91ad-3862e1ad6383" x="0" y="0" width="100" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Data:]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="b5641849-be46-4f43-8f93-fee0d7dd2409" x="0" y="41" width="555" height="1"/>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="4cec2750-5a21-4ee2-8daa-d804209e63d9" x="0" y="0" width="134" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Código Caixa]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="2bd19c5a-1814-4b18-a688-3f97b4d9d9a4" x="134" y="0" width="100" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Título]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="5ce0d47e-fe63-4cfb-bef4-dbbd4be33494" x="233" y="0" width="322" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<text><![CDATA[Observação]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement uuid="dddfe6e7-7601-48ea-8023-c1cf654352a1" x="0" y="0" width="134" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codigo_caixa}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="a994a799-9151-43d0-a897-c8ee57399c91" x="134" y="0" width="100" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{titulo_caixa}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement uuid="59cfa418-030e-400a-91bf-457b9af3fc04" x="233" y="0" width="322" height="20"/>
+				<box>
+					<pen lineWidth="0.5"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement>
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{observacao_caixa}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement uuid="08b06229-38ee-4013-bc44-2963a0d74fde" x="433" y="0" width="80" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="d4b1c5c1-94fe-4702-824e-bf9a2946710b" x="513" y="0" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="1e4610dd-dd3b-4358-9eda-10650bbc1e63" x="0" y="0" width="433" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="55" splitType="Stretch">
+			<textField>
+				<reportElement uuid="d707477f-ee5e-4fdf-8e54-e17b36447c2c" x="186" y="34" width="133" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{responsavel}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="ed1b1935-93a6-4bb2-9f7b-fc92851979d5" x="186" y="33" width="133" height="1"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

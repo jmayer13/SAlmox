@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="etiqueta" language="groovy" columnCount="2" printOrder="Horizontal" pageWidth="595" pageHeight="842" columnWidth="283" columnSpacing="1" leftMargin="14" rightMargin="14" topMargin="14" bottomMargin="14" uuid="e2b00fbe-7ea4-4860-b432-5dba6c105630">
+	<property name="ireport.zoom" value="1.2100000000000009"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="codigo_caixa" class="java.lang.Integer"/>
+	<parameter name="codigo_classe" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT titulo_caixa,to_char( converte_codigo_documento(ver_documento_caixa.codigo_documento),'FM000')AS converte_codigo_livro FROM ver_livro_caixa( $P{codigo_caixa}  ),busca_caixa( $P{codigo_caixa}  ),ver_documento_caixa( $P{codigo_caixa}  ) WHERE ver_livro_caixa.codigo_caixa = busca_caixa.codigo_caixa AND  ver_livro_caixa.codigo_livro =ver_documento_caixa.codigo_livro  ORDER BY converte_codigo_documento(ver_documento_caixa.codigo_documento);]]>
+	</queryString>
+	<field name="titulo_caixa" class="java.lang.String"/>
+	<field name="converte_codigo_livro" class="java.lang.String"/>
+	<detail>
+		<band height="33" splitType="Immediate">
+			<elementGroup>
+				<frame>
+					<reportElement uuid="28ad9490-9b0b-4955-a6bc-43ecb961a080" x="0" y="0" width="282" height="30"/>
+					<box>
+						<pen lineWidth="2.0"/>
+						<topPen lineWidth="2.0"/>
+						<leftPen lineWidth="2.0"/>
+						<bottomPen lineWidth="2.0"/>
+						<rightPen lineWidth="2.0"/>
+					</box>
+					<textField>
+						<reportElement uuid="acb49a93-1998-4788-a016-75401ced5cdf" x="114" y="0" width="89" height="30"/>
+						<textElement verticalAlignment="Middle">
+							<font fontName="Arial" size="20"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$P{codigo_classe}]]></textFieldExpression>
+					</textField>
+				</frame>
+				<staticText>
+					<reportElement uuid="758b8355-933f-4d9d-9a00-3f3daacd267a" x="78" y="0" width="36" height="30"/>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Arial" size="20"/>
+					</textElement>
+					<text><![CDATA[CX. ]]></text>
+				</staticText>
+			</elementGroup>
+			<textField>
+				<reportElement uuid="46cdf59f-8400-4146-ab40-b486ec14dca5" x="28" y="0" width="50" height="30"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="20" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{converte_codigo_livro}]]></textFieldExpression>
+			</textField>
+			<elementGroup>
+				<elementGroup>
+					<staticText>
+						<reportElement uuid="dcab2a33-d741-4144-8301-f2f12c3217ee" x="0" y="0" width="28" height="30"/>
+						<textElement verticalAlignment="Middle">
+							<font fontName="Arial" size="20" isBold="false"/>
+						</textElement>
+						<text><![CDATA[ Nº]]></text>
+					</staticText>
+				</elementGroup>
+			</elementGroup>
+			<textField>
+				<reportElement uuid="59f1ef67-d62e-43cf-b188-9e3fdcc2401a" x="203" y="0" width="79" height="30"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="20"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{titulo_caixa}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

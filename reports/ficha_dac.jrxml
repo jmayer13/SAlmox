@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorio_retirada" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="975e6080-74e4-4dbf-9bc1-af386afbf61f">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="3"/>
+	<property name="ireport.y" value="90"/>
+	<parameter name="codigo_caixa" class="java.lang.Integer"/>
+	<parameter name="categoria" class="java.lang.String"/>
+	<parameter name="codigo_classe" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT * FROM  ver_caixa_dac($P{codigo_caixa}), livro_dac, documento_dac WHERE livro_dac.codigo_caixa= $P{codigo_caixa} AND livro_dac.codigo_livro= documento_dac.codigo_livro ORDER BY livro_dac.codigo_livro_dac , documento_dac.codigo_documento_dac]]>
+	</queryString>
+	<field name="codigo_caixa" class="java.lang.Integer"/>
+	<field name="responsaveis" class="java.lang.String"/>
+	<field name="observacao_caixa" class="java.lang.String"/>
+	<field name="titulo_caixa" class="java.lang.String"/>
+	<field name="ativo" class="java.lang.Boolean"/>
+	<field name="codigo_caixa_dac" class="java.lang.Integer"/>
+	<field name="codigo_livro" class="java.lang.Integer"/>
+	<field name="titulo_livro" class="java.lang.String"/>
+	<field name="observacao_livro" class="java.lang.String"/>
+	<field name="codigo_livro_dac" class="java.lang.Integer"/>
+	<field name="ano" class="java.lang.String"/>
+	<field name="codigo_documento" class="java.lang.Integer"/>
+	<field name="titulo_documento" class="java.lang.String"/>
+	<field name="presente" class="java.lang.Boolean"/>
+	<field name="observacao_documento" class="java.lang.String"/>
+	<field name="codigo_documento_dac" class="java.lang.Integer"/>
+	<group name="livros">
+		<groupExpression><![CDATA[$F{codigo_livro}]]></groupExpression>
+		<groupHeader>
+			<band height="62">
+				<textField>
+					<reportElement uuid="daa9bb6f-e717-46cf-930b-5c29f5950e12" x="118" y="15" width="437" height="20"/>
+					<textElement>
+						<font size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{titulo_livro}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="28f0e643-3e79-4aaa-bfbd-1e487460b44d" x="3" y="16" width="92" height="20"/>
+					<textElement textAlignment="Right">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{codigo_livro_dac}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement uuid="679d0971-c277-4e25-866d-92005c6850fa" x="95" y="15" width="23" height="20"/>
+					<textElement textAlignment="Center">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<text><![CDATA[-]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="8066e450-d9fe-43a2-b671-cb1d6905c757" x="3" y="34" width="552" height="20"/>
+					<textElement textAlignment="Center">
+						<font size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ano}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="75" splitType="Stretch">
+			<image>
+				<reportElement uuid="5ac189bf-dfa0-487a-8348-5af3268884dd" x="47" y="3" width="69" height="72"/>
+				<imageExpression><![CDATA["reports//background.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement uuid="4e5e5ad6-0d63-4edf-8c57-93d5a9bc0b66" x="118" y="38" width="437" height="37"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Reconhecida pela Portaria Ministral nº 1.224 de 18/03/13
+Mantida pela Fundação Regional Integrada - FuRI
+Arquivo Central]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="968a0b41-4d3e-4251-9c29-852f14718ed9" x="118" y="0" width="437" height="28"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="true" isUnderline="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[UNIVERSIDADE REGIONAL INTEGRADA DO ALTO URUGUAI E DAS MISSÕES - Campus Santiago]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="53" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="62931c2a-207e-4e7a-a88f-6acd89ae782f" x="209" y="4" width="63" height="25"/>
+				<textElement>
+					<font size="16" isBold="true" isItalic="false"/>
+				</textElement>
+				<text><![CDATA[Caixa]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="169dd4dd-7ac9-481f-9fda-f78f72695b97" x="348" y="4" width="108" height="25"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{titulo_caixa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="99ab3f86-5dc4-47bf-9bc1-5f4c77c374be" x="116" y="28" width="322" height="24"/>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{categoria}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="98757798-df54-40ab-a3c5-23fb2341156c" x="272" y="4" width="76" height="24"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{codigo_classe}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField>
+				<reportElement uuid="4f850542-0565-488b-922c-825351043e22" x="53" y="0" width="30" height="15"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{codigo_documento_dac}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="c3b5e9c3-7ebe-43f0-b062-ef4199a60efc" x="81" y="0" width="474" height="15"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{titulo_documento}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="47" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="a3e6f6e5-d861-48de-a9b8-2e5120f83494" x="47" y="27" width="372" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="614e3f91-d09b-436e-8bad-b63568e575e6" x="515" y="27" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="994019c2-4b5e-420c-b509-e9295ecd8565" x="435" y="27" width="80" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="aed74b33-db66-424d-b091-4c46ff15946f" x="83" y="3" width="472" height="20"/>
+				<textElement textAlignment="Left">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{responsaveis}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="daac0a25-56f7-475e-896c-713ff6e91682" x="3" y="3" width="80" height="20"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Responsáveis:]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="1" splitType="Stretch"/>
+	</summary>
+</jasperReport>
